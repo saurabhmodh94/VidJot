@@ -13,6 +13,10 @@ mongoose
   .then(() => console.log('MongoDB Connected...'))
   .catch(err => console.log(err));
 
+// Load Idea Model
+require('./models/Ideas');
+const Idea = mongoose.model('ideas');
+
 // Handlebars Middleware
 app.engine(
   'handlebars',
