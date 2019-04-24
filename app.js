@@ -10,6 +10,7 @@ const app = express();
 
 // Load routes
 const ideas = require('./routes/ideas');
+const users = require('./routes/users');
 
 // Connect to mongoose
 mongoose
@@ -75,6 +76,7 @@ app.get('/about', (req, res) => {
 
 // Use routes
 app.use('/ideas', ideas);
+app.use('/users', users);
 
 const port = 5000;
 
