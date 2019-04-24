@@ -1,6 +1,7 @@
 const express = require('express'); // TODO: ES6
 const exphbs = require('express-handlebars');
 const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
 
 const app = express();
 
@@ -26,6 +27,10 @@ app.use(function(req, res, next) {
   // code here
   next();
 });
+
+// Body parser middleware
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
 // Index Route
 app.get('/', (req, res) => {
