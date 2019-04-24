@@ -71,7 +71,13 @@ app.post('/ideas', (req, res) => {
       details: req.body.details
     });
   } else {
-    res.send('passed');
+    const newIdea = {
+      title: req.body.title,
+      details: req.body.details
+    };
+    new Idea(newIdea).save().then(idea => {
+      res.redirect('/ideas');
+    });
   }
 });
 
