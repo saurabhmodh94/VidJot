@@ -1,6 +1,7 @@
 const express = require('express'); // TODO: ES6
 const exphbs = require('express-handlebars');
 const mongoose = require('mongoose');
+const methodOverride = require('method-override');
 const bodyParser = require('body-parser');
 
 const app = express();
@@ -35,6 +36,9 @@ app.use(function(req, res, next) {
 // Body parser middleware
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+
+// Method override middleware
+app.use(methodOverride('_method'));
 
 // Index Route
 app.get('/', (req, res) => {
@@ -73,6 +77,11 @@ app.get('/ideas/edit/:id', (req, res) => {
       idea: idea
     });
   });
+});
+
+// Edit Idea Form process
+app.put('/ideas/:id', (req, res) => {
+  res.send('PUT');
 });
 
 // Process Form
