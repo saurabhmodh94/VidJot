@@ -49,6 +49,28 @@ app.get('/ideas/add', (req, res) => {
   res.render('ideas/add');
 });
 
+// Process Form
+app.post('/ideas', (req, res) => {
+  let errors = [];
+
+  if (!req.body.title) {
+    errors.push({ text: 'Please add a title' });
+  }
+  if (!req.body.details) {
+    errors.push({ text: 'Please add some details' });
+  }
+
+  if (errors.length > 0) {
+    res.render('ideas/add', {
+      errors: errors,
+      title: req.body.title,
+      details: req.body.details
+    });
+  } else {
+    res.send('passed');
+  }
+});
+
 const port = 5000;
 
 app.listen(port, () => {
